@@ -1,4 +1,10 @@
 package alexvlad.view;
 
-public class PlayersPanel {
+import javax.swing.*;
+
+public class PlayersPanel extends JPanel {
+
+    public PlayersPanel() {
+        
+    }
 }

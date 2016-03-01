@@ -1,5 +1,5 @@
 package alexvlad.model;
 
-public class Player {
+public class Squad {
 
 }

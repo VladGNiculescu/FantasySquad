@@ -12,7 +12,7 @@ public class MainView extends JFrame {
     FormationPanel formationPanel;
 
     public MainView() {
-        super();
+        super("Fantasy Squad");
 
         createWidgets();
     }
@@ -25,17 +25,6 @@ public class MainView extends JFrame {
 
         formationList = new JComboBox(formations);
 
-        formationList.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String selectedFormation = String.valueOf(formationList.getSelectedItem());
-                if (formationList.getSelectedIndex() > 0) {
-                    System.out.println("Changed");
-                    changeFormationLayout(selectedFormation);
-                }
-            }
-        });
-
         borderPanel = new JPanel();
         borderPanel.setLayout(new BorderLayout());
 
@@ -45,7 +34,7 @@ public class MainView extends JFrame {
         pack();
     }
 
-    private void changeFormationLayout(String formation) {
+    public void changeFormationLayout(String formation) {
 
         int[] players = new int[3];
         int count = 0;
@@ -63,5 +52,17 @@ public class MainView extends JFrame {
         formationPanel = new FormationPanel(players[0], players[1], players[2]);
         borderPanel.add(formationPanel, BorderLayout.CENTER);
         borderPanel.validate();
+    }
+
+    public JComboBox getFormationList() {
+        return formationList;
+    }
+
+    public JPanel getBorderPanel() {
+        return borderPanel;
+    }
+
+    public FormationPanel getFormationPanel() {
+        return formationPanel;
     }
 }

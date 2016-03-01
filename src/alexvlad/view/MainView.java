@@ -56,11 +56,6 @@ public class MainView extends JFrame {
             }
         }
 
-        for (int i = 0; i < players.length; ++i) {
-            System.out.print(players[i] + " ");
-        }
-        System.out.println();
-
         if (formationPanel != null) {
             borderPanel.remove(formationPanel);
         }

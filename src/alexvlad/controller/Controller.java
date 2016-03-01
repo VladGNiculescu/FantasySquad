@@ -1,18 +1,18 @@
 package alexvlad.controller;
 
 import alexvlad.model.Squad;
-import alexvlad.view.MainView;
+import alexvlad.view.Fantasy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controller {
 
-    MainView view;
+    Fantasy view;
     Squad squad;
 
 
-    public Controller(MainView view, Squad squad) {
+    public Controller(Fantasy view, Squad squad) {
         this.view = view;
         this.squad = squad;
 

@@ -34,7 +34,7 @@ public class FormationPanel extends JPanel {
         JPanel player = new JPanel();
         player.setLayout(new BorderLayout());
         JButton playerButton = new JButton("+");
-        JTextField playerName = new JTextField(name);
+        JLabel playerName = new JLabel(name);
 
         playerName.setHorizontalAlignment(JLabel.CENTER);
 

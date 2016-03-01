@@ -1,23 +1,27 @@
 package alexvlad.view;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class FormationPanel extends JPanel {
 
     public FormationPanel(int def, int mid, int at) {
 
-        JPanel pl = new JPanel();
-        pl.add(addLine(def,"Defender"));
-        pl.add(addLine(mid,"Midfielder"));
-        pl.add(addLine(at,"Striker"));
+        super();
+
+        setMinimumSize(new Dimension(300, 300));
+        add(addLine(def,"Defender"));
+        add(addLine(mid,"Midfielder"));
+        add(addLine(at,"Striker"));
 
 
         
     }
+
     private JPanel addLine(int number, String name)
     {
-       JPanel line = new JPanel();
+        JPanel line = new JPanel();
         line.setLayout(new GridLayout(1,number));
         for(int i=0;i<number;i++)
         {

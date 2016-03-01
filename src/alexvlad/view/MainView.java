@@ -23,6 +23,7 @@ public class MainView extends JFrame {
         borderPanel.setLayout(new BorderLayout());
 
         borderPanel.add(formationList, BorderLayout.NORTH);
+        borderPanel.add(new FormationPanel(4,4,2),BorderLayout.CENTER);
         add(borderPanel);
 
         pack();

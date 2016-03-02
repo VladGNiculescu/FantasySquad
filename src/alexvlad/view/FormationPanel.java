@@ -19,10 +19,10 @@ public class FormationPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         setMinimumSize(new Dimension(300, 300));
 
-        add(addLine(1, "Goalkeeper"));
-        add(addLine(def, "Defender"));
-        add(addLine(mid, "Midfielder"));
-        add(addLine(at, "Striker"));
+        add(addLine(1, new PlayerPanel("Goalkeeper")));
+        add(addLine(def, new PlayerPanel("Defender")));
+        add(addLine(mid, new PlayerPanel("Midfielder")));
+        add(addLine(at, new PlayerPanel("Striker")));
 
         add(addSubLine(totalGoalkeepers - 1, totalDef - def, totalMidfielders - mid, totalStrikers - at));
     }
@@ -33,48 +33,34 @@ public class FormationPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         for (int i = 0; i < goalkeepers; ++i) {
-            line.add(createPlayerPanel("Goalkeeper"));
+            line.add(new PlayerPanel("Goalkeeper"));
         }
 
         for (int i = 0; i < def; ++i) {
-            line.add(createPlayerPanel("Defender"));
+            line.add(new PlayerPanel("Defender"));
         }
 
         for (int i = 0; i < mid; ++i) {
-            line.add(createPlayerPanel("Midfielder"));
+            line.add(new PlayerPanel("Midfielder"));
         }
 
         for (int i = 0; i < at; ++i) {
-            line.add(createPlayerPanel("Striker"));
+            line.add(new PlayerPanel("Striker"));
         }
 
         return line;
     }
 
-    private JPanel addLine(int number, String name) {
+    private JPanel addLine(int number, PlayerPanel p) {
         JPanel line = new JPanel();
         line.setLayout(new GridLayout(1, number, 20, 20));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         for(int i = 0; i < number; i++) {
-            line.add(createPlayerPanel(name));
+            line.add(p);
         }
         return line;
     }
 
-    private JPanel createPlayerPanel(String name) {
-        JPanel player = new JPanel();
-        player.setLayout(new BorderLayout());
-        JButton playerButton = new JButton("+");
-        JLabel playerName = new JLabel(name);
 
-        playerName.setHorizontalAlignment(JLabel.CENTER);
-
-        player.add(playerButton,BorderLayout.CENTER);
-        player.add(playerName,BorderLayout.SOUTH);
-
-
-
-        return player;
-    }
 
 }

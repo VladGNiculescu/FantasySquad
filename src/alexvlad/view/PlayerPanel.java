@@ -17,8 +17,10 @@ public class PlayerPanel extends JPanel {
     {
        super();
         this.name = name;
+        createWidget();
 
     }
+
     public void createWidget(){
 
 

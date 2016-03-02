@@ -51,6 +51,14 @@ public class Fantasy extends JFrame {
         borderPanel.add(formationPanel, BorderLayout.CENTER);
         borderPanel.validate();
     }
+    public PlayerPanel getPlayePanel(int id)
+    {
+
+        return formationPanel.getPlayerPanellist().get(id);
+
+    }
+
+
 
     public JComboBox getFormationList() {
         return formationList;

@@ -1,8 +1,12 @@
 package alexvlad.view;
 
+import alexvlad.model.Player;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FormationPanel extends JPanel {
 
@@ -10,6 +14,8 @@ public class FormationPanel extends JPanel {
     private final int totalDef = 5;
     private final int totalMidfielders = 5;
     private final int totalStrikers = 3;
+    private HashMap<Integer,PlayerPanel> buttonlistMap;
+    private int id =0;
 
     public FormationPanel(int def, int mid, int at) {
 
@@ -19,10 +25,10 @@ public class FormationPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         setMinimumSize(new Dimension(300, 300));
 
-        add(addLine(1, new PlayerPanel("Goalkeeper")));
-        add(addLine(def, new PlayerPanel("Defender")));
-        add(addLine(mid, new PlayerPanel("Midfielder")));
-        add(addLine(at, new PlayerPanel("Striker")));
+        add(addLine(1, "Goalkeeper"));
+        add(addLine(def,"Defender"));
+        add(addLine(mid, "Midfielder"));
+        add(addLine(at, "Striker"));
 
         add(addSubLine(totalGoalkeepers - 1, totalDef - def, totalMidfielders - mid, totalStrikers - at));
     }
@@ -51,15 +57,24 @@ public class FormationPanel extends JPanel {
         return line;
     }
 
-    private JPanel addLine(int number, PlayerPanel p) {
+    private JPanel addLine(int number, String name) {
         JPanel line = new JPanel();
         line.setLayout(new GridLayout(1, number, 20, 20));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         for(int i = 0; i < number; i++) {
-            line.add(p);
+            PlayerPanel pn = new PlayerPanel(name);
+            line.add(pn);
+            buttonlistMap.put(id,pn);
+            id ++;
         }
         return line;
     }
+
+    public HashMap<Integer,PlayerPanel> getPlayerPanellist()
+    {
+        return buttonlistMap;
+    }
+
 
 
 

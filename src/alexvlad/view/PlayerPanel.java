@@ -1,7 +1,5 @@
 package alexvlad.view;
 
-import alexvlad.model.Player;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,15 +8,15 @@ import java.awt.*;
  */
 public class PlayerPanel extends JPanel {
 
-
     private String name;
+    private JButton playerButton;
+    private JLabel playerNameLabel;
 
     public PlayerPanel(String name)
     {
        super();
         this.name = name;
         createWidget();
-
     }
 
     public void createWidget(){
@@ -26,15 +24,28 @@ public class PlayerPanel extends JPanel {
 
         setLayout(new BorderLayout());
 
-        JButton playerButton = new JButton("+");
+        playerButton = new JButton("+");
 
-        JLabel playerName = new JLabel(name);
+        playerNameLabel = new JLabel(name);
 
-        playerName.setHorizontalAlignment(JLabel.CENTER);
+        playerNameLabel.setHorizontalAlignment(JLabel.CENTER);
 
         add(playerButton,BorderLayout.CENTER);
-        add(playerName,BorderLayout.SOUTH);
+        add(playerNameLabel,BorderLayout.SOUTH);
 
         setMaximumSize(new Dimension(10,10));
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public JButton getPlayerButton() {
+        return playerButton;
+    }
+
+    public JLabel getPlayerNameLabel() {
+        return playerNameLabel;
     }
 }

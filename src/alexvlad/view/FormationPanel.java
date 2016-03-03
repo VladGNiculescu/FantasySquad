@@ -15,11 +15,14 @@ public class FormationPanel extends JPanel {
     private final int totalMidfielders = 5;
     private final int totalStrikers = 3;
     private HashMap<Integer,PlayerPanel> buttonlistMap;
-    private int id =0;
+    private int id;
 
     public FormationPanel(int def, int mid, int at) {
 
         super();
+
+        buttonlistMap = new HashMap<Integer, PlayerPanel>();
+        id = 0;
 
         setLayout(new GridLayout(5, 1, 20, 20));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -31,6 +34,7 @@ public class FormationPanel extends JPanel {
         add(addLine(at, "Striker"));
 
         add(addSubLine(totalGoalkeepers - 1, totalDef - def, totalMidfielders - mid, totalStrikers - at));
+
     }
 
     private JPanel addSubLine(int goalkeepers, int def, int mid, int at) {
@@ -39,19 +43,31 @@ public class FormationPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         for (int i = 0; i < goalkeepers; ++i) {
-            line.add(new PlayerPanel("Goalkeeper"));
+            PlayerPanel playerPanel = new PlayerPanel("Goalkeeper");
+            line.add(playerPanel);
+            buttonlistMap.put(id, playerPanel);
+            id++;
         }
 
         for (int i = 0; i < def; ++i) {
-            line.add(new PlayerPanel("Defender"));
+            PlayerPanel playerPanel = new PlayerPanel("Defender");
+            line.add(playerPanel);
+            buttonlistMap.put(id, playerPanel);
+            id++;
         }
 
         for (int i = 0; i < mid; ++i) {
-            line.add(new PlayerPanel("Midfielder"));
+            PlayerPanel playerPanel = new PlayerPanel("Midfielder");
+            line.add(playerPanel);
+            buttonlistMap.put(id, playerPanel);
+            id++;
         }
 
         for (int i = 0; i < at; ++i) {
-            line.add(new PlayerPanel("Striker"));
+            PlayerPanel playerPanel = new PlayerPanel("Striker");
+            line.add(playerPanel);
+            buttonlistMap.put(id, playerPanel);
+            id++;
         }
 
         return line;
@@ -61,21 +77,19 @@ public class FormationPanel extends JPanel {
         JPanel line = new JPanel();
         line.setLayout(new GridLayout(1, number, 20, 20));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
         for(int i = 0; i < number; i++) {
             PlayerPanel pn = new PlayerPanel(name);
             line.add(pn);
-            buttonlistMap.put(id,pn);
-            id ++;
+            buttonlistMap.put(id, pn);
+            id++;
         }
         return line;
     }
 
-    public HashMap<Integer,PlayerPanel> getPlayerPanellist()
+    public HashMap<Integer,PlayerPanel> getPlayerPanelList()
     {
         return buttonlistMap;
     }
-
-
-
 
 }

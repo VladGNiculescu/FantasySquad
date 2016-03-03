@@ -1,7 +1,10 @@
 package alexvlad.view;
 
+import alexvlad.model.Player;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class Fantasy extends JFrame {
 
@@ -51,14 +54,27 @@ public class Fantasy extends JFrame {
         borderPanel.add(formationPanel, BorderLayout.CENTER);
         borderPanel.validate();
     }
-    public PlayerPanel getPlayePanel(int id)
-    {
 
-        return formationPanel.getPlayerPanellist().get(id);
-
+    public PlayerPanel getPlayerPanel(int id) {
+        return formationPanel.getPlayerPanelList().get(id);
     }
 
+    public Integer getPlayerIDForButton(JButton button) {
+        int ID = -1;
 
+        HashMap<Integer, PlayerPanel> hashMap = formationPanel.getPlayerPanelList();
+
+        for (Integer i: hashMap.keySet()) {
+
+            PlayerPanel currentPanel = hashMap.get(i);
+
+            if (button == currentPanel.getPlayerButton()) {
+                ID = i;
+            }
+        }
+
+        return ID;
+    }
 
     public JComboBox getFormationList() {
         return formationList;

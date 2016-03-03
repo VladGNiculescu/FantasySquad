@@ -7,6 +7,7 @@ import alexvlad.view.PlayerPanel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Controller {
 
@@ -51,8 +52,41 @@ public class Controller {
                     Integer index = view.getPlayerIDForButton(buttonSource);
 
                     System.out.println("ID: " + index);
+
+                    showFileChooserDialog();
                 }
             });
         }
+    }
+
+    private void showFileChooserDialog() {
+        JFileChooser fileChooser = new JFileChooser();
+
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fileChooser.showOpenDialog(view);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+
+            boolean isImageFile = checkFileValidity(selectedFile);
+
+            if (!isImageFile) {
+                JOptionPane.showMessageDialog(null, "Please select an image file!");
+            }
+        }
+    }
+
+    private boolean checkFileValidity(File file) {
+
+        String name = file.getName().toLowerCase();
+        if (name.endsWith(".jpeg") ||
+                name.endsWith(".jpg") ||
+                name.endsWith(".png") ||
+                name.endsWith(".tiff")||
+                name.endsWith(".gif")) {
+            return true;
+        }
+
+        return false;
     }
 }

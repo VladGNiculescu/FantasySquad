@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 public class Fantasy extends JFrame {
+
     JComboBox formationList;
     JPanel borderPanel;
     FormationPanel formationPanel;

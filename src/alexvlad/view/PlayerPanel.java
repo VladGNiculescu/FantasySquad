@@ -1,9 +1,7 @@
 package alexvlad.view;
-import alexvlad.model.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 /**
  * Created by Vlad-minihp on 02/03/2016.
  */

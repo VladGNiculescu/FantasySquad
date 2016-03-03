@@ -2,7 +2,6 @@ package alexvlad.controller;
 
 import alexvlad.model.Squad;
 import alexvlad.view.Fantasy;
-import alexvlad.view.PlayerPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -53,7 +52,7 @@ public class Controller {
 
                     System.out.println("ID: " + index);
 
-                    showFileChooserDialog();
+//                    showFileChooserDialog();
                 }
             });
         }

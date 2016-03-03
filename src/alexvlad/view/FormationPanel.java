@@ -11,13 +11,13 @@ public class FormationPanel extends JPanel {
     private final int totalDef = 5;
     private final int totalMidfielders = 5;
     private final int totalStrikers = 3;
-    private HashMap<Integer, JButton> buttonlistMap;
+    private HashMap<Integer, PlayerPanel> buttonlistMap;
     private int id = 0;
 
     public FormationPanel(int def, int mid, int at) {
 
         super();
-        buttonlistMap = new HashMap<Integer, JButton>();
+        buttonlistMap = new HashMap<Integer, PlayerPanel>();
 
         setLayout(new GridLayout(5, 1, 20, 20));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -40,28 +40,28 @@ public class FormationPanel extends JPanel {
         for (int i = 0; i < goalkeepers; ++i) {
             PlayerPanel p = new PlayerPanel("Goalkeeper");
             line.add(p);
-            buttonlistMap.put(id, p.getButton());
+            buttonlistMap.put(id, p);
             id++;
         }
 
         for (int i = 0; i < def; ++i) {
             PlayerPanel p = new PlayerPanel("Defender");
             line.add(p);
-            buttonlistMap.put(id, p.getButton());
+            buttonlistMap.put(id, p);
             id++;
         }
 
         for (int i = 0; i < mid; ++i) {
             PlayerPanel p = new PlayerPanel("Midfielder");
             line.add(p);
-            buttonlistMap.put(id, p.getButton());
+            buttonlistMap.put(id, p);
             id++;
         }
 
         for (int i = 0; i < at; ++i) {
             PlayerPanel p = new PlayerPanel("Striker");
             line.add(p);
-            buttonlistMap.put(id, p.getButton());
+            buttonlistMap.put(id, p);
             id++;
         }
 
@@ -77,14 +77,14 @@ public class FormationPanel extends JPanel {
         for (int i = 0; i < number; ++i) {
             PlayerPanel pn = new PlayerPanel(name);
             line.add(pn);
-            buttonlistMap.put(id, pn.getButton());
+            buttonlistMap.put(id, pn);
             id++;
         }
 
         return line;
     }
 
-    public HashMap<Integer, JButton> getPlayerButtonsMap() {
+    public HashMap<Integer, PlayerPanel> getPlayerButtonsMap() {
 
         return buttonlistMap;
     }
@@ -94,7 +94,7 @@ public class FormationPanel extends JPanel {
         Integer toReturn = -1;
 
         for (Integer key: buttonlistMap.keySet()) {
-            JButton currentButton = buttonlistMap.get(key);
+            JButton currentButton = buttonlistMap.get(key).getButton();
 
             if (currentButton == button) {
                 toReturn = key;

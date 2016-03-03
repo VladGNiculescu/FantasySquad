@@ -5,8 +5,7 @@ public class Player {
     private int id;
     private String name;
 
-    public Player(int id, String imgPath, String name)
-    {
+    public Player(int id, String imgPath, String name) {
         this.name = name;
         this.id = id;
         this.imgPath = imgPath;
@@ -17,16 +16,13 @@ public class Player {
         return imgPath;
     }
 
-   public void setName(String name)
-   {
-       this.name =name;
+   public void setName(String name) {
+       this.name = name;
    }
 
     public int getId() {
         return id;
     }
-
-
 
     public String getName() {
         return name;

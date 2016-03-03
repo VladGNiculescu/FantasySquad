@@ -43,12 +43,12 @@ public class Fantasy extends JFrame {
         borderPanel.validate();
     }
 
-    public HashMap<Integer, JButton> getPlayerPanel() {
+    public HashMap<Integer, PlayerPanel> getPlayerPanel() {
         return formationPanel.getPlayerButtonsMap();
     }
 
     public JButton getPlayerButtonById(int id) {
-        return formationPanel.getPlayerButtonsMap().get(id);
+        return formationPanel.getPlayerButtonsMap().get(id).getButton();
     }
 
     public Integer getPlayerIDForButton(JButton button) {

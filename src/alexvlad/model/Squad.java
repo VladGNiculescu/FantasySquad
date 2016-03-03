@@ -36,6 +36,13 @@ public class Squad {
         } else {
 
 
+
+        }
+    }
+
+    private void updateFieldPlayers(int def, int mid, int at) {
+        for (int i = 0; i < def; ++i) {
+
         }
     }
 

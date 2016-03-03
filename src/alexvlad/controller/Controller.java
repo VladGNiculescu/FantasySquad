@@ -40,8 +40,7 @@ public class Controller {
     private void addActionListenersToPlayers() {
 
         for (int id = 0; id < 15; ++id) {
-            PlayerPanel playerPanel = view.getPlayerPanel(id);
-            JButton currentButton = playerPanel.getPlayerButton();
+            JButton currentButton = view.getPlayerButtonById(id);
 
             currentButton.addActionListener(new ActionListener() {
                 @Override
@@ -51,7 +50,7 @@ public class Controller {
                     JButton buttonSource = (JButton) source;
                     Integer index = view.getPlayerIDForButton(buttonSource);
 
-                    System.out.println("Index: " + index);
+                    System.out.println("ID: " + index);
                 }
             });
         }

@@ -1,12 +1,14 @@
 package alexvlad.controller;
 
-import alexvlad.model.Squad;
+import alexvlad.model.*;
 import alexvlad.view.Fantasy;
+import alexvlad.view.FormationPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -29,12 +31,71 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 String selectedFormation = String.valueOf(view.getFormationList().getSelectedItem());
                 if (view.getFormationList().getSelectedIndex() > 0) {
-                    view.changeFormationLayout(selectedFormation);
+//                    view.changeFormationLayout(selectedFormation);
+                    formationChanged(selectedFormation);
                 }
 
-                addActionListenersToPlayers();
+//                addActionListenersToPlayers();
             }
         });
+    }
+
+    private void formationChanged(String formation) {
+        int[] decodedFormation = decodeFormationString(formation);
+
+        squad.updateFieldPlayers(decodedFormation[0], decodedFormation[1], decodedFormation[2]);
+
+        ArrayList<Player> players = squad.getPlayerList();
+
+        ArrayList<Player> goalkeepers = new ArrayList<Player>();
+        ArrayList<Player> defenders = new ArrayList<Player>();
+        ArrayList<Player> midfielders = new ArrayList<Player>();
+        ArrayList<Player> strikers = new ArrayList<Player>();
+
+        ArrayList<Player> subs = new ArrayList<Player>();
+
+        goalkeepers.add(players.get(0));
+        subs.add(players.get(1));
+
+
+        for (int i = 0; i < players.size(); ++i) {
+            if (players.get(i) instanceof Defender && !players.get(i).isSub()) {
+                defenders.add(players.get(i));
+            } else if (players.get(i) instanceof Defender && players.get(i).isSub()) {
+                subs.add(players.get(i));
+            }
+
+            if (players.get(i) instanceof Midfielder && !players.get(i).isSub()) {
+                midfielders.add(players.get(i));
+            } else if (players.get(i) instanceof Midfielder && players.get(i).isSub()) {
+                subs.add(players.get(i));
+            }
+
+            if (players.get(i) instanceof Striker && !players.get(i).isSub()) {
+                strikers.add(players.get(i));
+            } else if (players.get(i) instanceof Striker && players.get(i).isSub()) {
+                subs.add(players.get(i));
+            }
+        }
+
+        if (view.getFormationPanel() == null) {
+            view.setFormationPanel(new FormationPanel());
+        }
+        view.getFormationPanel().addLine(goalkeepers);
+        view.updateFormationPanel();
+    }
+
+    private int[] decodeFormationString(String formation) {
+        int[] players = new int[3];
+        int count = 0;
+
+        for (int i = 0; i < formation.length(); ++i) {
+            if (formation.charAt(i) != '-') {
+                players[count++] = Character.getNumericValue(formation.charAt(i));
+            }
+        }
+
+        return players;
     }
 
     private void addActionListenersToPlayers() {

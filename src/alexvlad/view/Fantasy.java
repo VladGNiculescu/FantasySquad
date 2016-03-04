@@ -24,7 +24,7 @@ public class Fantasy extends JFrame {
         add(borderPanel);
         pack();
     }
-
+/*
     public void changeFormationLayout(String formation) {
         int[] players = new int[3];
         int count = 0;
@@ -39,7 +39,12 @@ public class Fantasy extends JFrame {
             borderPanel.remove(formationPanel);
         }
 
-        formationPanel = new FormationPanel(players[0], players[1], players[2]);
+//        formationPanel = new FormationPanel(players[0], players[1], players[2]);
+        borderPanel.add(formationPanel, BorderLayout.CENTER);
+        borderPanel.validate();
+    }
+*/
+    public void updateFormationPanel() {
         borderPanel.add(formationPanel, BorderLayout.CENTER);
         borderPanel.validate();
     }
@@ -66,5 +71,9 @@ public class Fantasy extends JFrame {
 
     public FormationPanel getFormationPanel() {
         return formationPanel;
+    }
+
+    public void setFormationPanel(FormationPanel formationPanel) {
+        this.formationPanel = formationPanel;
     }
 }

@@ -4,13 +4,7 @@ import java.util.ArrayList;
 
 public class Squad {
 
-    private final int totalGoalkeepers = 2;
-    private final int totalDef = 5;
-    private final int totalMidfielders = 5;
-    private final int totalStrikers = 3;
-
     private ArrayList<Player> players;
-
 
     private int id;
 
@@ -45,7 +39,7 @@ public class Squad {
     }
 
 
-    private void updateFieldPlayers(int def, int mid, int at) {
+    public void updateFieldPlayers(int def, int mid, int at) {
 
         subAll();
         int countdef = 0;

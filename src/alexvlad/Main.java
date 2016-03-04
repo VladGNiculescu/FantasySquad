@@ -9,5 +9,6 @@ public class Main {
         Fantasy mainView = new Fantasy();
         Squad squad = new Squad();
         new Controller(mainView, squad);
+        squad.generate(2, 5, 5, 3);
     }
 }

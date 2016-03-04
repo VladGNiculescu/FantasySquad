@@ -4,12 +4,20 @@ public class Player {
     private String imgPath;
     private int id;
     private String name;
+    private boolean isSub = false;
 
     public Player(int id, String name) {
         this.name = name;
         this.id = id;
     }
 
+    public void setSub(boolean sub) {
+        isSub = sub;
+    }
+
+    public boolean isSub() {
+        return isSub;
+    }
     public String getImgPath() {
         return imgPath;
     }

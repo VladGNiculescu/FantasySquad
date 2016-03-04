@@ -9,90 +9,76 @@ public class Squad {
     private final int totalMidfielders = 5;
     private final int totalStrikers = 3;
 
-    private ArrayList<Goalkeeper> goalkeepers;
-    private ArrayList<Defender> defenders;
-    private ArrayList<Midfielder> midfielders;
-    private ArrayList<Striker> strikers;
-    private ArrayList<Player> subs;
+    private ArrayList<Player> players;
+
 
     private int id;
 
     public Squad() {
-        goalkeepers = new ArrayList<Goalkeeper>();
-        defenders = new ArrayList<Defender>();
-        midfielders = new ArrayList<Midfielder>();
-        strikers = new ArrayList<Striker>();
-        subs = new ArrayList<Player>();
+
+        players = new ArrayList<Player>();
 
         id = 0;
     }
 
     public void generate(int gk, int def, int mid, int at) {
-        if (goalkeepers.isEmpty() || defenders.isEmpty() || midfielders.isEmpty() || strikers.isEmpty() || subs.isEmpty()) {
-
-            generateFieldPlayers(gk, def, mid, at);
-            generateSubs(totalGoalkeepers - gk, totalDef - def, totalMidfielders - mid, totalStrikers - at);
-
-        } else {
 
 
-
+        for (int i = 0; i < gk; i++) {
+            players.add(new Goalkeeper(id));
+            id++;
         }
+        for (int i = 0; i < def; i++) {
+            players.add(new Defender(id));
+            id++;
+        }
+        for (int i = 0; i < mid; i++) {
+            players.add(new Midfielder(id));
+            id++;
+        }
+        for (int i = 0; i < at; i++) {
+            players.add(new Striker(id));
+            id++;
+        }
+
+
     }
+
 
     private void updateFieldPlayers(int def, int mid, int at) {
-        for (int i = 0; i < def; ++i) {
 
+        subAll();
+        int countdef = 0;
+        int countmid = 0;
+        int countat = 0;
+        players.get(0).setSub(false);
+        for (int i = 0; i < players.size(); i++) {
+            if (countdef < def && players.get(i) instanceof Defender) {
+                players.get(i).setSub(false);
+                countdef++;
+            }
+            if (countmid < mid && players.get(i) instanceof Midfielder) {
+                players.get(i).setSub(false);
+                countmid++;
+            }
+            if (countat < at && players.get(i) instanceof Striker) {
+                players.get(i).setSub(false);
+                countat++;
+            }
+        }
+
+
+    }
+
+    private void subAll() {
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).setSub(true);
         }
     }
 
-    private void generateFieldPlayers(int gk, int def, int mid, int at) {
-        Goalkeeper goalkeeper = new Goalkeeper(id);
-        goalkeepers.add(goalkeeper);
-        id++;
-
-        for (int i = 0; i < def; ++i) {
-            Defender defender = new Defender(id);
-            defenders.add(defender);
-            id++;
-        }
-
-        for (int i = 0; i < mid; ++i) {
-            Midfielder midfielder = new Midfielder(id);
-            midfielders.add(midfielder);
-            id++;
-        }
-
-        for (int i = 0; i < at; ++i) {
-            Striker striker = new Striker(id);
-            strikers.add(striker);
-            id++;
-        }
+    public ArrayList<Player> getPlayerList() {
+        return players;
     }
 
-    private void generateSubs(int gk, int def, int mid, int at) {
-        for (int i = 0; i < gk; ++i) {
-            Goalkeeper goalkeeper = new Goalkeeper(id);
-            subs.add(goalkeeper);
-            id++;
-        }
 
-        for (int i = 0; i < def; ++i) {
-            Defender defender = new Defender(id);
-            subs.add(defender);
-            id++;
-        }
-
-        for (int i = 0; i < mid; ++i) {
-            Midfielder midfielder = new Midfielder(id);
-            subs.add(midfielder);
-            id++;
-        }
-
-        for (int i = 0; i < at; ++i) {
-            Striker striker = new Striker(id);
-            subs.add(striker);
-            id++;
-        }
-    }
 }

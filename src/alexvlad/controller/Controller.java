@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Controller {
 
@@ -92,7 +93,7 @@ public class Controller {
             view.getFormationPanel().remove(midfielders);
             view.getFormationPanel().remove(strikers);
             view.getFormationPanel().remove(subs);
-*/
+            */
         }
 
         System.out.println(goalkeepers);
@@ -155,7 +156,8 @@ public class Controller {
             }
 
             setImgToPlayer(selectedFile.getPath(), index);
-            setPlayerName(selectedFile.getPath(), index);
+//            setPlayerName(selectedFile.getPath(), index);
+            setPlayerName(selectedFile.getName().toLowerCase(), index);
             System.out.println(view.getPlayer(index).getImgPath());
 
 
@@ -182,25 +184,19 @@ public class Controller {
 
     }
 
-    private void setPlayerName(String imgpath, int index) {
+    private void setPlayerName(String imageFile, int index) {
 
+        int count = 0;
+        String finalString = "";
 
-        String[] name = imgpath.split("\\\\|\\.");
-        if (name == null) {
-            name = imgpath.split("/|.");
+        while(imageFile.charAt(count) != '.') {
+            finalString += String.valueOf(imageFile.charAt(count));
+            count++;
         }
 
-        char first = name[name.length - 2].charAt(0);
-        char upfirst = Character.toUpperCase(first);
+        String capitalised = String.valueOf(finalString.charAt(0)).toUpperCase() + finalString.substring(1, finalString.length());
 
-        String finalName = "" + upfirst;
-
-        for (int i = 1; i < name[name.length - 2].length(); i++) {
-            finalName = finalName + name[name.length - 2].charAt(i);
-        }
-
-
-        view.getPlayer(index).setName(finalName);
+        view.getPlayer(index).setName(capitalised);
         view.getPanel(index).setNameLabel();
     }
 

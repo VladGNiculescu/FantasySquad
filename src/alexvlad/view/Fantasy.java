@@ -1,4 +1,6 @@
 package alexvlad.view;
+import alexvlad.model.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -14,7 +16,7 @@ public class Fantasy extends JFrame {
     }
 
     private void createWidgets() {
-        setMinimumSize(new Dimension(500, 500));
+        setMinimumSize(new Dimension(800, 800));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         String[] formations = {"Select a formation...", "4-4-2", "4-3-3", "3-5-2", "5-3-2", "3-4-3", "4-5-1"};
         formationList = new JComboBox(formations);
@@ -44,6 +46,12 @@ public class Fantasy extends JFrame {
         borderPanel.validate();
     }
 */
+
+    public void clearPanel()
+    {
+        borderPanel.remove(formationPanel);
+        borderPanel.validate();
+    }
     public void updateFormationPanel() {
         borderPanel.add(formationPanel, BorderLayout.CENTER);
         borderPanel.validate();
@@ -56,7 +64,14 @@ public class Fantasy extends JFrame {
     public JButton getPlayerButtonById(int id) {
         return formationPanel.getPlayerButtonsMap().get(id).getButton();
     }
-
+    public Player getPlayer(int id)
+    {
+        return formationPanel.getPlayerButtonsMap().get(id).getPlayer();
+    }
+    public PlayerPanel getPanel(int id)
+    {
+        return formationPanel.getPlayerButtonsMap().get(id);
+    }
     public Integer getPlayerIDForButton(JButton button) {
         return formationPanel.getPlayerIDForButton(button);
     }

@@ -30,17 +30,21 @@ public class Controller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedFormation = String.valueOf(view.getFormationList().getSelectedItem());
+
                 if (view.getFormationList().getSelectedIndex() > 0) {
 //                    view.changeFormationLayout(selectedFormation);
                     formationChanged(selectedFormation);
                 }
 
-//                addActionListenersToPlayers();
+
+                addActionListenersToPlayers();
             }
         });
     }
 
     private void formationChanged(String formation) {
+
+
         int[] decodedFormation = decodeFormationString(formation);
 
         squad.updateFieldPlayers(decodedFormation[0], decodedFormation[1], decodedFormation[2]);
@@ -80,8 +84,24 @@ public class Controller {
 
         if (view.getFormationPanel() == null) {
             view.setFormationPanel(new FormationPanel());
+        } else if (view.getFormationPanel() != null) {
+            view.clearPanel();
+            view.setFormationPanel(new FormationPanel());
+           /* view.getFormationPanel().remove(goalkeepers);
+            view.getFormationPanel().remove(defenders);
+            view.getFormationPanel().remove(midfielders);
+            view.getFormationPanel().remove(strikers);
+            view.getFormationPanel().remove(subs);
+*/
         }
-        view.getFormationPanel().addLine(goalkeepers);
+
+        System.out.println(goalkeepers);
+        view.getFormationPanel().add(goalkeepers);
+        view.getFormationPanel().add(defenders);
+        view.getFormationPanel().add(midfielders);
+        view.getFormationPanel().add(strikers);
+        view.getFormationPanel().add(subs);
+
         view.updateFormationPanel();
     }
 
@@ -113,13 +133,13 @@ public class Controller {
 
                     System.out.println("ID: " + index);
 
-//                    showFileChooserDialog();
+                    showFileChooserDialog(index);
                 }
             });
         }
     }
 
-    private void showFileChooserDialog() {
+    private void showFileChooserDialog(int index) {
         JFileChooser fileChooser = new JFileChooser();
 
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -133,6 +153,12 @@ public class Controller {
             if (!isImageFile) {
                 JOptionPane.showMessageDialog(null, "Please select an image file!");
             }
+
+            setImgToPlayer(selectedFile.getPath(), index);
+            setPlayerName(selectedFile.getPath(), index);
+            System.out.println(view.getPlayer(index).getImgPath());
+
+
         }
     }
 
@@ -142,11 +168,40 @@ public class Controller {
         if (name.endsWith(".jpeg") ||
                 name.endsWith(".jpg") ||
                 name.endsWith(".png") ||
-                name.endsWith(".tiff")||
+                name.endsWith(".tiff") ||
                 name.endsWith(".gif")) {
             return true;
         }
 
         return false;
     }
+
+    private void setImgToPlayer(String file, int index) {
+        view.getPlayer(index).setImgPath(file);
+        view.getPanel(index).setImage();
+
+    }
+
+    private void setPlayerName(String imgpath, int index) {
+
+
+        String[] name = imgpath.split("\\\\|\\.");
+        if (name == null) {
+            name = imgpath.split("/|.");
+        }
+
+        char first = name[name.length - 2].charAt(0);
+        char upfirst = Character.toUpperCase(first);
+
+        String finalName = "" + upfirst;
+
+        for (int i = 1; i < name[name.length - 2].length(); i++) {
+            finalName = finalName + name[name.length - 2].charAt(i);
+        }
+
+
+        view.getPlayer(index).setName(finalName);
+        view.getPanel(index).setNameLabel();
+    }
+
 }

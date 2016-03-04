@@ -1,5 +1,7 @@
 package alexvlad.model;
 
+import java.io.File;
+
 public class Player {
     private String imgPath;
     private int id;

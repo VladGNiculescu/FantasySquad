@@ -17,9 +17,13 @@ public class FormationPanel extends JPanel {
         super();
         buttonlistMap = new HashMap<Integer, PlayerPanel>();
 
+
+
         setLayout(new GridLayout(5, 1, 20, 20));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        setMinimumSize(new Dimension(300, 300));
+        setMinimumSize(new Dimension(500, 500));
+
+
     }
 /*
     private JPanel addSubLine(int goalkeepers, int def, int mid, int at) {
@@ -75,6 +79,15 @@ public class FormationPanel extends JPanel {
         return line;
     }
 */
+    public void remove(ArrayList<Player> players)
+    {
+        this.remove(addLine(players));
+
+    }
+    public void add(ArrayList<Player> players)
+    {
+        this.add(addLine(players));
+    }
     public JPanel addLine(ArrayList<Player> players) {
 
         System.out.println("Players: " + players);
@@ -85,6 +98,7 @@ public class FormationPanel extends JPanel {
 
         for (int i = 0; i < players.size(); ++i) {
             PlayerPanel pn = new PlayerPanel(players.get(i));
+         //   System.out.println(pn);
             line.add(pn);
             buttonlistMap.put(id, pn);
             id++;

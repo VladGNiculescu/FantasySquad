@@ -1,9 +1,11 @@
 package alexvlad.view;
+
 import alexvlad.model.Player;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+
 public class Fantasy extends JFrame {
 
     JComboBox formationList;
@@ -26,32 +28,12 @@ public class Fantasy extends JFrame {
         add(borderPanel);
         pack();
     }
-/*
-    public void changeFormationLayout(String formation) {
-        int[] players = new int[3];
-        int count = 0;
 
-        for (int i = 0; i < formation.length(); ++i) {
-            if (formation.charAt(i) != '-') {
-                players[count++] = Character.getNumericValue(formation.charAt(i));
-            }
-        }
-
-        if (formationPanel != null) {
-            borderPanel.remove(formationPanel);
-        }
-
-//        formationPanel = new FormationPanel(players[0], players[1], players[2]);
-        borderPanel.add(formationPanel, BorderLayout.CENTER);
-        borderPanel.validate();
-    }
-*/
-
-    public void clearPanel()
-    {
+    public void clearPanel() {
         borderPanel.remove(formationPanel);
         borderPanel.validate();
     }
+
     public void updateFormationPanel() {
         borderPanel.add(formationPanel, BorderLayout.CENTER);
         borderPanel.validate();
@@ -64,14 +46,15 @@ public class Fantasy extends JFrame {
     public JButton getPlayerButtonById(int id) {
         return formationPanel.getPlayerButtonsMap().get(id).getButton();
     }
-    public Player getPlayer(int id)
-    {
+
+    public Player getPlayer(int id) {
         return formationPanel.getPlayerButtonsMap().get(id).getPlayer();
     }
-    public PlayerPanel getPanel(int id)
-    {
+
+    public PlayerPanel getPanel(int id) {
         return formationPanel.getPlayerButtonsMap().get(id);
     }
+
     public Integer getPlayerIDForButton(JButton button) {
         return formationPanel.getPlayerIDForButton(button);
     }

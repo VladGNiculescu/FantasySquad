@@ -50,58 +50,18 @@ public class Controller {
 
         squad.updateFieldPlayers(decodedFormation[0], decodedFormation[1], decodedFormation[2]);
 
-        ArrayList<Player> players = squad.getPlayerList();
-
-        ArrayList<Player> goalkeepers = new ArrayList<Player>();
-        ArrayList<Player> defenders = new ArrayList<Player>();
-        ArrayList<Player> midfielders = new ArrayList<Player>();
-        ArrayList<Player> strikers = new ArrayList<Player>();
-
-        ArrayList<Player> subs = new ArrayList<Player>();
-
-        goalkeepers.add(players.get(0));
-        subs.add(players.get(1));
-
-
-        for (int i = 0; i < players.size(); ++i) {
-            if (players.get(i) instanceof Defender && !players.get(i).isSub()) {
-                defenders.add(players.get(i));
-            } else if (players.get(i) instanceof Defender && players.get(i).isSub()) {
-                subs.add(players.get(i));
-            }
-
-            if (players.get(i) instanceof Midfielder && !players.get(i).isSub()) {
-                midfielders.add(players.get(i));
-            } else if (players.get(i) instanceof Midfielder && players.get(i).isSub()) {
-                subs.add(players.get(i));
-            }
-
-            if (players.get(i) instanceof Striker && !players.get(i).isSub()) {
-                strikers.add(players.get(i));
-            } else if (players.get(i) instanceof Striker && players.get(i).isSub()) {
-                subs.add(players.get(i));
-            }
-        }
-
         if (view.getFormationPanel() == null) {
             view.setFormationPanel(new FormationPanel());
         } else if (view.getFormationPanel() != null) {
             view.clearPanel();
             view.setFormationPanel(new FormationPanel());
-           /* view.getFormationPanel().remove(goalkeepers);
-            view.getFormationPanel().remove(defenders);
-            view.getFormationPanel().remove(midfielders);
-            view.getFormationPanel().remove(strikers);
-            view.getFormationPanel().remove(subs);
-            */
         }
 
-        System.out.println(goalkeepers);
-        view.getFormationPanel().add(goalkeepers);
-        view.getFormationPanel().add(defenders);
-        view.getFormationPanel().add(midfielders);
-        view.getFormationPanel().add(strikers);
-        view.getFormationPanel().add(subs);
+        view.getFormationPanel().add(squad.getGoalkeepers());
+        view.getFormationPanel().add(squad.getDefenders());
+        view.getFormationPanel().add(squad.getMidfielders());
+        view.getFormationPanel().add(squad.getStrikers());
+        view.getFormationPanel().add(squad.getSubs());
 
         view.updateFormationPanel();
     }
@@ -132,8 +92,6 @@ public class Controller {
                     JButton buttonSource = (JButton) source;
                     Integer index = view.getPlayerIDForButton(buttonSource);
 
-                    System.out.println("ID: " + index);
-
                     showFileChooserDialog(index);
                 }
             });
@@ -153,14 +111,10 @@ public class Controller {
 
             if (!isImageFile) {
                 JOptionPane.showMessageDialog(null, "Please select an image file!");
+            } else {
+                setImgToPlayer(selectedFile.getPath(), index);
+                setPlayerName(selectedFile.getName().toLowerCase(), index);
             }
-
-            setImgToPlayer(selectedFile.getPath(), index);
-//            setPlayerName(selectedFile.getPath(), index);
-            setPlayerName(selectedFile.getName().toLowerCase(), index);
-            System.out.println(view.getPlayer(index).getImgPath());
-
-
         }
     }
 
@@ -179,9 +133,9 @@ public class Controller {
     }
 
     private void setImgToPlayer(String file, int index) {
+
         view.getPlayer(index).setImgPath(file);
         view.getPanel(index).setImage();
-
     }
 
     private void setPlayerName(String imageFile, int index) {

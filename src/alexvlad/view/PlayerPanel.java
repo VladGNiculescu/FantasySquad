@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class PlayerPanel extends JPanel {
 
     private JButton playerButton;
-    private JLabel playerNameLabel;
+    private JTextField playerNameTextField;
     private HashMap<String, String> player;
 
     public PlayerPanel(HashMap<String, String> player) {
@@ -23,8 +23,8 @@ public class PlayerPanel extends JPanel {
 
         playerButton = new JButton("+");
 
-        playerNameLabel = new JLabel(player.get("name"));
-        playerNameLabel.setHorizontalAlignment(JLabel.CENTER);
+        playerNameTextField = new JTextField(player.get("name"));
+        playerNameTextField.setHorizontalAlignment(JTextField.CENTER);
         JPanel buttonPanel = new JPanel();
 
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -35,16 +35,19 @@ public class PlayerPanel extends JPanel {
 
         add(buttonPanel, BorderLayout.CENTER);
 
-
-        add(playerNameLabel, BorderLayout.SOUTH);
+        add(playerNameTextField, BorderLayout.SOUTH);
 
         if (player.get("imagePath") != null) {
             setImage();
         }
     }
 
-    public JButton getButton() {
+    public JButton getPlayerButton() {
         return playerButton;
+    }
+
+    public JTextField getPlayerNameTextField() {
+        return playerNameTextField;
     }
 
     public HashMap<String, String> getPlayer() {
@@ -63,7 +66,7 @@ public class PlayerPanel extends JPanel {
     }
 
     public void setNameLabel() {
-        playerNameLabel.setText(player.get("name"));
+        playerNameTextField.setText(player.get("name"));
     }
 
 }

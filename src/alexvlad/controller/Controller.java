@@ -5,11 +5,15 @@ import alexvlad.view.Fantasy;
 import alexvlad.view.FormationPanel;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Controller {
 
@@ -33,7 +37,6 @@ public class Controller {
                 String selectedFormation = String.valueOf(view.getFormationList().getSelectedItem());
 
                 if (view.getFormationList().getSelectedIndex() > 0) {
-//                    view.changeFormationLayout(selectedFormation);
                     formationChanged(selectedFormation);
                 }
 
@@ -158,6 +161,26 @@ public class Controller {
                     showFileChooserDialog(index);
                 }
             });
+
+            JTextField currentTextField = view.getPlayerTextFieldById(id);
+
+            currentTextField.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    System.out.println("Insert update");
+
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    System.out.println("Remove update");
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    System.out.println("Changed update");
+                }
+            });
         }
     }
 
@@ -218,5 +241,7 @@ public class Controller {
 
         view.getPanel(index).setNameLabel();
     }
+
+//    private void set
 
 }

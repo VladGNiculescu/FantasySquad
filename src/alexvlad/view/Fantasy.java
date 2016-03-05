@@ -1,7 +1,5 @@
 package alexvlad.view;
 
-import alexvlad.model.Player;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -44,7 +42,11 @@ public class Fantasy extends JFrame {
     }
 
     public JButton getPlayerButtonById(int id) {
-        return formationPanel.getPlayerButtonsMap().get(id).getButton();
+        return formationPanel.getPlayerButtonsMap().get(id).getPlayerButton();
+    }
+
+    public JTextField getPlayerTextFieldById(int id) {
+        return formationPanel.getPlayerButtonsMap().get(id).getPlayerNameTextField();
     }
 
     public HashMap<String, String> getPlayer(int id) {

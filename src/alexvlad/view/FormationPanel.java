@@ -1,7 +1,5 @@
 package alexvlad.view;
 
-import alexvlad.model.Player;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -55,7 +53,7 @@ public class FormationPanel extends JPanel {
         Integer toReturn = -1;
 
         for (Integer key : buttonlistMap.keySet()) {
-            JButton currentButton = buttonlistMap.get(key).getButton();
+            JButton currentButton = buttonlistMap.get(key).getPlayerButton();
 
             if (currentButton == button) {
                 toReturn = key;

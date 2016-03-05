@@ -1,9 +1,10 @@
 package alexvlad;
+
 import alexvlad.controller.Controller;
 import alexvlad.model.Squad;
 import alexvlad.view.Fantasy;
-
 public class Main {
+
     public static void main(String[] args) {
 
         Fantasy view = new Fantasy();

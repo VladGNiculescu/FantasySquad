@@ -1,7 +1,6 @@
 package alexvlad.view;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.HashMap;
 
@@ -10,9 +9,15 @@ public class PlayerPanel extends JPanel {
     private JButton playerButton;
     private JTextField playerNameTextField;
     private HashMap<String, String> player;
-    private JPanel textfieldPanel;
-    private JPanel buttonPanel;
+
     private Fantasy f;
+
+    /**
+     * Constructor for PlayerPanel
+     *
+     * @param player HashMap with Player info
+     * @param f      the parent view
+     */
 
     public PlayerPanel(HashMap<String, String> player, Fantasy f) {
         super();
@@ -21,6 +26,10 @@ public class PlayerPanel extends JPanel {
         this.f = f;
         createWidget();
     }
+
+    /**
+     * Method to set widgets on the panel
+     */
 
     public void createWidget() {
 
@@ -50,17 +59,39 @@ public class PlayerPanel extends JPanel {
         }
     }
 
+    /**
+     * Getter for the JButton on the Panel
+     *
+     * @return
+     */
+
     public JButton getPlayerButton() {
         return playerButton;
     }
+
+    /**
+     * Getter for the JTextField on the Panel
+     *
+     * @return
+     */
 
     public JTextField getPlayerNameTextField() {
         return playerNameTextField;
     }
 
+    /**
+     * Getter for the HashMap that holds player info
+     *
+     * @return
+     */
+
     public HashMap<String, String> getPlayer() {
         return player;
     }
+
+    /**
+     * Method to set the player's image on the panel
+     */
 
     public void setImage() {
         try {
@@ -72,6 +103,10 @@ public class PlayerPanel extends JPanel {
         } catch (Exception e) {
         }
     }
+
+    /**
+     * Method to set the player's name on the JTextField
+     */
 
     public void setNameLabel() {
         playerNameTextField.setText(player.get("name"));

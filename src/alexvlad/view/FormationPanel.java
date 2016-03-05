@@ -11,6 +11,12 @@ public class FormationPanel extends JPanel {
     private int id = 0;
     private Fantasy f;
 
+    /**
+     * Constructor for the Formation Panel
+     *
+     * @param f It's parent view (Panel)
+     */
+
     public FormationPanel(Fantasy f) {
 
         super();
@@ -23,9 +29,22 @@ public class FormationPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
     }
 
+    /**
+     * Method to add players to the screen
+     *
+     * @param players ArrayList of HashMaps with info about players
+     */
+
     public void add(ArrayList<HashMap<String, String>> players) {
         add(addLine(players));
     }
+
+    /**
+     * Method to form a line on the Formation Panel
+     *
+     * @param players ArrayList with info about the players
+     * @return JPanel with players
+     */
 
     private JPanel addLine(ArrayList<HashMap<String, String>> players) {
 
@@ -43,9 +62,22 @@ public class FormationPanel extends JPanel {
         return line;
     }
 
+    /**
+     * Getter for the HashMap that holds a PlayerPanel for a Player ID
+     *
+     * @return
+     */
+
     public HashMap<Integer, PlayerPanel> getPlayerButtonsMap() {
         return buttonlistMap;
     }
+
+    /**
+     * Method to get an ID for a button
+     *
+     * @param button JButton to look for
+     * @return Integer of the ID
+     */
 
     public Integer getPlayerIDForButton(JButton button) {
 
@@ -62,6 +94,13 @@ public class FormationPanel extends JPanel {
 
         return toReturn;
     }
+
+    /**
+     * Method to get an ID for a text field
+     *
+     * @param textField JTextField to look for
+     * @return Integer of the ID
+     */
 
     public Integer getPlayerIDForTextField(JTextField textField) {
 

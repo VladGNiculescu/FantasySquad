@@ -18,6 +18,13 @@ public class Controller implements ActionListener {
     Fantasy view;
     Squad squad;
 
+    /**
+     * Constructor for Controller
+     * Sets the view and the model
+     *
+     * @param view
+     * @param squad
+     */
     public Controller(Fantasy view, Squad squad) {
         this.view = view;
         this.squad = squad;
@@ -25,6 +32,11 @@ public class Controller implements ActionListener {
         setupFormations();
     }
 
+    /**
+     * Overriding actionPerformed method for JTextField updates
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().getClass() == JTextField.class) {
@@ -35,6 +47,9 @@ public class Controller implements ActionListener {
         }
     }
 
+    /**
+     * Method to add action listeners for the JComboBox and for Player Buttons
+     */
     private void setupFormations() {
         view.getFormationList().addActionListener(new ActionListener() {
             @Override
@@ -49,6 +64,13 @@ public class Controller implements ActionListener {
         });
     }
 
+    /**
+     * Method to respond when the formation was changed.
+     * Will decode the formation string and will send requests to view for it to update.
+     *
+     * @param formation
+     */
+
     private void formationChanged(String formation) {
         int[] decodedFormation = decodeFormationString(formation);
         squad.updateFieldPlayers(decodedFormation[0], decodedFormation[1], decodedFormation[2]);
@@ -61,6 +83,11 @@ public class Controller implements ActionListener {
         sendPlayersToPitch();
         view.updateFormationPanel();
     }
+
+    /**
+     * Method to arrange players based on their role.
+     * Will send requests to the view to update every line according to the player role.
+     */
 
     private void sendPlayersToPitch() {
         ArrayList<HashMap<String, String>> playersToSend = new ArrayList<HashMap<String, String>>();
@@ -111,6 +138,13 @@ public class Controller implements ActionListener {
         playersToSend.clear();
     }
 
+    /**
+     * Method to decode the formation String
+     *
+     * @param formation String representation of the formation (i.e. 3-4-3)
+     * @return an array of ints representing the number of players on each line (defense, midfield and attack)
+     */
+
     private int[] decodeFormationString(String formation) {
         int[] players = new int[3];
         int count = 0;
@@ -121,6 +155,10 @@ public class Controller implements ActionListener {
         }
         return players;
     }
+
+    /**
+     * Method that iterates over all Player Panels and adds action listeners for Buttons and TextFields
+     */
 
     private void addActionListenersToPlayers() {
         for (int id = 0; id < 15; ++id) {
@@ -154,6 +192,11 @@ public class Controller implements ActionListener {
         }
     }
 
+    /**
+     * Method to show the file chooser when selecting an image file
+     * @param index int of the ID of the player that is changing its image
+     */
+
     private void showFileChooserDialog(int index) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -170,6 +213,12 @@ public class Controller implements ActionListener {
         }
     }
 
+    /**
+     * Method to check if the file selected by the user is an image file
+     * @param file the selected file
+     * @return boolean value for the validity of file
+     */
+
     private boolean checkFileValidity(File file) {
         String name = file.getName().toLowerCase();
         if (name.endsWith(".jpeg") ||
@@ -182,6 +231,13 @@ public class Controller implements ActionListener {
         return false;
     }
 
+    /**
+     * Method to update the player's image file
+     * Will update the image in view and model as well
+     * @param file Path of the image file
+     * @param index ID of the player
+     */
+
     private void setImgToPlayer(String file, int index) {
         view.getPlayer(index).put("imagePath", file);
         squad.getPlayerList().get(index).setImgPath(file);
@@ -189,10 +245,18 @@ public class Controller implements ActionListener {
         view.resize();
     }
 
-    private void setPlayerName(String imageFile, int index) {
-        int count =  imageFile.length() - 1;
+    /**
+     * Method to update the player's name from the Image File
+     * The method looks into the file name and selects the player's name from it
+     * Will update the name in view and in model
+     * @param imageFile Image file name (as in 'image.png')
+     * @param index  ID of the player
+     */
 
-        while(imageFile.charAt(count) != '.') {
+    private void setPlayerName(String imageFile, int index) {
+        int count = imageFile.length() - 1;
+
+        while (imageFile.charAt(count) != '.') {
             count--;
         }
 
@@ -208,6 +272,12 @@ public class Controller implements ActionListener {
         squad.getPlayerList().get(index).setName(capitalised);
         view.getPanel(index).setNameLabel();
     }
+
+    /**
+     * Method to update the name of the player based on calls received on the JTextField Action Listener
+     * @param name The name of the player
+     * @param index ID of the player
+     */
 
     private void userChangedPlayerName(String name, int index) {
         view.getPlayer(index).put("name", name);

@@ -1,13 +1,23 @@
 package alexvlad.model;
 
-import java.io.File;
-
 public class Player {
+
+    /**
+     * Main class for Player
+     * Has an imagePath, ID, a name and boolean isSub
+     */
 
     private String imgPath;
     private int id;
     private String name;
     private boolean isSub = false;
+
+    /**
+     * Constructor for the player class
+     *
+     * @param id   ID of the player
+     * @param name The player name
+     */
 
     public Player(int id, String name) {
         this.name = name;

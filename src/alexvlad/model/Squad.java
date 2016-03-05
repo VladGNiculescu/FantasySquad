@@ -12,6 +12,11 @@ public class Squad {
     private ArrayList<Player> subs;
     private int id;
 
+    /**
+     * Constructor for the Squad class
+     * Initialises the ArrayLists that keep record of the players
+     */
+
     public Squad() {
 
         players = new ArrayList<Player>();
@@ -24,6 +29,15 @@ public class Squad {
 
         id = 0;
     }
+
+    /**
+     * Generates and empty team based on the number of players of each role
+     *
+     * @param gk  number of Goalkeepers
+     * @param def number of Defenders
+     * @param mid number of Midfielders
+     * @param at  number of Strikers
+     */
 
     public void generate(int gk, int def, int mid, int at) {
 
@@ -44,6 +58,15 @@ public class Squad {
             id++;
         }
     }
+
+    /**
+     * Method to respond a formation change.
+     * Will take or send players from the bench based on the formation
+     *
+     * @param def number of Defenders
+     * @param mid number of Midfielders
+     * @param at  number of Strikers
+     */
 
     public void updateFieldPlayers(int def, int mid, int at) {
 
@@ -99,61 +122,74 @@ public class Squad {
         }
     }
 
+    /**
+     * Method that sends all the players to the sub bench
+     * Sets the isSub value to true
+     */
+
     private void subAll() {
         for (int i = 0; i < players.size(); i++) {
             players.get(i).setSub(true);
         }
     }
 
+    /**
+     * Getter for the ArrayList of Players
+     *
+     * @return ArrayList of all Players in the Squad
+     */
+
     public ArrayList<Player> getPlayerList() {
         return players;
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
-    }
+    /**
+     * Getter for the ArrayList of Goalkeepers
+     *
+     * @return ArrayList of Goalkeepers
+     */
 
     public ArrayList<Player> getGoalkeepers() {
         return goalkeepers;
     }
 
-    public void setGoalkeepers(ArrayList<Player> goalkeepers) {
-        this.goalkeepers = goalkeepers;
-    }
+    /**
+     * Getter for the ArrayList of Defenders
+     *
+     * @return ArrayList of Defenders
+     */
 
     public ArrayList<Player> getDefenders() {
         return defenders;
     }
 
-    public void setDefenders(ArrayList<Player> defenders) {
-        this.defenders = defenders;
-    }
+    /**
+     * Getter for the ArrayList of Midfielders
+     *
+     * @return ArrayList of Midfielders
+     */
 
     public ArrayList<Player> getMidfielders() {
         return midfielders;
     }
 
-    public void setMidfielders(ArrayList<Player> midfielders) {
-        this.midfielders = midfielders;
-    }
+    /**
+     * Getter for the ArrayList of Strikers
+     *
+     * @return ArrayList of Strikers
+     */
 
     public ArrayList<Player> getStrikers() {
         return strikers;
     }
 
-    public void setStrikers(ArrayList<Player> strikers) {
-        this.strikers = strikers;
-    }
+    /**
+     * Getter for the ArrayList of Subs (type Player)
+     *
+     * @return ArrayList of Subs
+     */
 
     public ArrayList<Player> getSubs() {
         return subs;
-    }
-
-    public void setSubs(ArrayList<Player> subs) {
-        this.subs = subs;
     }
 }

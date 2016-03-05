@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Controller {
@@ -197,8 +196,8 @@ public class Controller {
     }
 
     private void setImgToPlayer(String file, int index) {
-
         view.getPlayer(index).put("imagePath", file);
+        squad.getPlayerList().get(index).setImgPath(file);
         view.getPanel(index).setImage();
     }
 
@@ -215,6 +214,8 @@ public class Controller {
         String capitalised = String.valueOf(finalString.charAt(0)).toUpperCase() + finalString.substring(1, finalString.length());
 
         view.getPlayer(index).put("name", capitalised);
+        squad.getPlayerList().get(index).setName(capitalised);
+
         view.getPanel(index).setNameLabel();
     }
 

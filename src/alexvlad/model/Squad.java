@@ -28,7 +28,6 @@ public class Squad {
 
     public void generate(int gk, int def, int mid, int at) {
 
-
         for (int i = 0; i < gk; i++) {
             players.add(new Goalkeeper(id));
             id++;
@@ -57,6 +56,7 @@ public class Squad {
         int countmid = 0;
         int countat = 0;
         players.get(0).setSub(false);
+
         for (int i = 0; i < players.size(); i++) {
             if (countdef < def && players.get(i) instanceof Defender) {
                 players.get(i).setSub(false);
@@ -162,4 +162,5 @@ public class Squad {
     public void setSubs(ArrayList<Player> subs) {
         this.subs = subs;
     }
+
 }

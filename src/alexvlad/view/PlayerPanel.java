@@ -23,14 +23,11 @@ public class PlayerPanel extends JPanel {
 
         playerButton = new JButton("+");
 
-
         playerNameLabel = new JLabel(player.get("name"));
         playerNameLabel.setHorizontalAlignment(JLabel.CENTER);
         JPanel buttonPanel = new JPanel();
 
-
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-
 
         playerButton.setPreferredSize(new Dimension(50, 50));
 
@@ -40,7 +37,6 @@ public class PlayerPanel extends JPanel {
 
 
         add(playerNameLabel, BorderLayout.SOUTH);
-
 
         if (player.get("imagePath") != null) {
             setImage();

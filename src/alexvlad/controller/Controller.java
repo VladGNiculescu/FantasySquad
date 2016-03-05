@@ -197,6 +197,13 @@ public class Controller implements ActionListener {
         }
 
         String capitalised = String.valueOf(imageFile.charAt(0)).toUpperCase() + imageFile.substring(1, count);
+
+        for (int i = 1; i < capitalised.length(); ++i) {
+            if (capitalised.charAt(i) == '.') {
+                capitalised = capitalised.substring(0, i + 1) + String.valueOf(capitalised.charAt(i + 1)).toUpperCase() + capitalised.substring(i + 2, capitalised.length());
+            }
+        }
+
         view.getPlayer(index).put("name", capitalised);
         squad.getPlayerList().get(index).setName(capitalised);
         view.getPanel(index).setNameLabel();

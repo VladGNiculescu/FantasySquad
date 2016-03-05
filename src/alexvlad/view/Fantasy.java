@@ -5,17 +5,20 @@ import alexvlad.controller.Controller;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+
 public class Fantasy extends JFrame {
 
     private JComboBox formationList;
     private JPanel borderPanel;
     private FormationPanel formationPanel;
     private Controller controller;
+
     public Fantasy() {
         super("Fantasy Football");
 
         createWidgets();
     }
+
     private void createWidgets() {
 
         setMinimumSize(new Dimension(450, 600));
@@ -31,6 +34,7 @@ public class Fantasy extends JFrame {
 
         pack();
     }
+
     public void resize() {
 
         if (this.getHeight() <= this.getMinimumSize().getHeight() && this.getWidth() <= this.getMinimumSize().getWidth()) {
@@ -39,51 +43,66 @@ public class Fantasy extends JFrame {
             setMinimumSize(new Dimension(this.getWidth(), this.getHeight()));
         }
     }
+
     public void clearPanel() {
         borderPanel.remove(formationPanel);
         borderPanel.validate();
     }
+
     public void updateFormationPanel() {
         borderPanel.add(formationPanel, BorderLayout.CENTER);
 
         borderPanel.validate();
     }
+
     public HashMap<Integer, PlayerPanel> getPlayerPanel() {
         return formationPanel.getPlayerButtonsMap();
     }
+
     public JButton getPlayerButtonById(int id) {
         return formationPanel.getPlayerButtonsMap().get(id).getPlayerButton();
     }
+
     public JTextField getPlayerTextFieldById(int id) {
         return formationPanel.getPlayerButtonsMap().get(id).getPlayerNameTextField();
     }
+
     public HashMap<String, String> getPlayer(int id) {
         return formationPanel.getPlayerButtonsMap().get(id).getPlayer();
     }
+
     public PlayerPanel getPanel(int id) {
         return formationPanel.getPlayerButtonsMap().get(id);
     }
+
     public Integer getPlayerIDForButton(JButton button) {
         return formationPanel.getPlayerIDForButton(button);
     }
+
     public Integer getPlayerIDForTextField(JTextField textField) {
         return formationPanel.getPlayerIDForTextField(textField);
     }
+
     public JComboBox getFormationList() {
         return formationList;
     }
+
     public JPanel getBorderPanel() {
         return borderPanel;
     }
+
     public FormationPanel getFormationPanel() {
         return formationPanel;
     }
+
     public void setFormationPanel(FormationPanel formationPanel) {
         this.formationPanel = formationPanel;
     }
+
     public Controller getController() {
         return controller;
     }
+
     public void setController(Controller controller) {
         this.controller = controller;
     }

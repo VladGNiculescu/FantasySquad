@@ -1,6 +1,7 @@
 package alexvlad.model;
 
 import java.util.ArrayList;
+
 public class Squad {
 
     private ArrayList<Player> players;
@@ -10,6 +11,7 @@ public class Squad {
     private ArrayList<Player> strikers;
     private ArrayList<Player> subs;
     private int id;
+
     public Squad() {
 
         players = new ArrayList<Player>();
@@ -22,6 +24,7 @@ public class Squad {
 
         id = 0;
     }
+
     public void generate(int gk, int def, int mid, int at) {
 
         for (int i = 0; i < gk; i++) {
@@ -41,6 +44,7 @@ public class Squad {
             id++;
         }
     }
+
     public void updateFieldPlayers(int def, int mid, int at) {
 
         subAll();
@@ -94,47 +98,61 @@ public class Squad {
             }
         }
     }
+
     private void subAll() {
         for (int i = 0; i < players.size(); i++) {
             players.get(i).setSub(true);
         }
     }
+
     public ArrayList<Player> getPlayerList() {
         return players;
     }
+
     public ArrayList<Player> getPlayers() {
         return players;
     }
+
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
+
     public ArrayList<Player> getGoalkeepers() {
         return goalkeepers;
     }
+
     public void setGoalkeepers(ArrayList<Player> goalkeepers) {
         this.goalkeepers = goalkeepers;
     }
+
     public ArrayList<Player> getDefenders() {
         return defenders;
     }
+
     public void setDefenders(ArrayList<Player> defenders) {
         this.defenders = defenders;
     }
+
     public ArrayList<Player> getMidfielders() {
         return midfielders;
     }
+
     public void setMidfielders(ArrayList<Player> midfielders) {
         this.midfielders = midfielders;
     }
+
     public ArrayList<Player> getStrikers() {
         return strikers;
     }
+
     public void setStrikers(ArrayList<Player> strikers) {
         this.strikers = strikers;
     }
+
     public ArrayList<Player> getSubs() {
         return subs;
     }
+
     public void setSubs(ArrayList<Player> subs) {
         this.subs = subs;
     }

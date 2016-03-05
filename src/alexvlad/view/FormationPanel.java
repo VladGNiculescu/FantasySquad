@@ -4,11 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 public class FormationPanel extends JPanel {
 
     private HashMap<Integer, PlayerPanel> buttonlistMap;
     private int id = 0;
     private Fantasy f;
+
     public FormationPanel(Fantasy f) {
 
         super();
@@ -20,9 +22,11 @@ public class FormationPanel extends JPanel {
 
         setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
     }
+
     public void add(ArrayList<HashMap<String, String>> players) {
         add(addLine(players));
     }
+
     private JPanel addLine(ArrayList<HashMap<String, String>> players) {
 
         JPanel line = new JPanel();
@@ -38,9 +42,11 @@ public class FormationPanel extends JPanel {
 
         return line;
     }
+
     public HashMap<Integer, PlayerPanel> getPlayerButtonsMap() {
         return buttonlistMap;
     }
+
     public Integer getPlayerIDForButton(JButton button) {
 
         Integer toReturn = -1;
@@ -56,6 +62,7 @@ public class FormationPanel extends JPanel {
 
         return toReturn;
     }
+
     public Integer getPlayerIDForTextField(JTextField textField) {
 
         Integer toReturn = -1;

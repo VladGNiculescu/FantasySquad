@@ -5,7 +5,6 @@ import alexvlad.view.Fantasy;
 import alexvlad.view.FormationPanel;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
@@ -13,16 +12,19 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 public class Controller implements ActionListener {
 
     Fantasy view;
     Squad squad;
+
     public Controller(Fantasy view, Squad squad) {
         this.view = view;
         this.squad = squad;
         this.view.setVisible(true);
         setupFormations();
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().getClass() == JTextField.class) {
@@ -32,6 +34,7 @@ public class Controller implements ActionListener {
             userChangedPlayerName(text, index);
         }
     }
+
     private void setupFormations() {
         view.getFormationList().addActionListener(new ActionListener() {
             @Override
@@ -45,6 +48,7 @@ public class Controller implements ActionListener {
             }
         });
     }
+
     private void formationChanged(String formation) {
         int[] decodedFormation = decodeFormationString(formation);
         squad.updateFieldPlayers(decodedFormation[0], decodedFormation[1], decodedFormation[2]);
@@ -57,6 +61,7 @@ public class Controller implements ActionListener {
         sendPlayersToPitch();
         view.updateFormationPanel();
     }
+
     private void sendPlayersToPitch() {
         ArrayList<HashMap<String, String>> playersToSend = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < squad.getGoalkeepers().size(); ++i) {
@@ -105,6 +110,7 @@ public class Controller implements ActionListener {
         view.getFormationPanel().add(playersToSend);
         playersToSend.clear();
     }
+
     private int[] decodeFormationString(String formation) {
         int[] players = new int[3];
         int count = 0;
@@ -115,6 +121,7 @@ public class Controller implements ActionListener {
         }
         return players;
     }
+
     private void addActionListenersToPlayers() {
         for (int id = 0; id < 15; ++id) {
             JButton currentButton = view.getPlayerButtonById(id);
@@ -133,10 +140,12 @@ public class Controller implements ActionListener {
                 public void insertUpdate(DocumentEvent e) {
                     actionPerformed(new ActionEvent(currentTextField, 1001, null));
                 }
+
                 @Override
                 public void removeUpdate(DocumentEvent e) {
                     actionPerformed(new ActionEvent(currentTextField, 1001, null));
                 }
+
                 @Override
                 public void changedUpdate(DocumentEvent e) {
                     actionPerformed(new ActionEvent(currentTextField, 1001, null));
@@ -144,6 +153,7 @@ public class Controller implements ActionListener {
             });
         }
     }
+
     private void showFileChooserDialog(int index) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -159,6 +169,7 @@ public class Controller implements ActionListener {
             }
         }
     }
+
     private boolean checkFileValidity(File file) {
         String name = file.getName().toLowerCase();
         if (name.endsWith(".jpeg") ||
@@ -170,24 +181,27 @@ public class Controller implements ActionListener {
         }
         return false;
     }
+
     private void setImgToPlayer(String file, int index) {
         view.getPlayer(index).put("imagePath", file);
         squad.getPlayerList().get(index).setImgPath(file);
         view.getPanel(index).setImage();
         view.resize();
     }
+
     private void setPlayerName(String imageFile, int index) {
-        int count = 0;
-        String finalString = "";
-        while (imageFile.charAt(count) != '.') {
-            finalString += String.valueOf(imageFile.charAt(count));
-            count++;
+        int count =  imageFile.length() - 1;
+
+        while(imageFile.charAt(count) != '.') {
+            count--;
         }
-        String capitalised = String.valueOf(finalString.charAt(0)).toUpperCase() + finalString.substring(1, finalString.length());
+
+        String capitalised = String.valueOf(imageFile.charAt(0)).toUpperCase() + imageFile.substring(1, count);
         view.getPlayer(index).put("name", capitalised);
         squad.getPlayerList().get(index).setName(capitalised);
         view.getPanel(index).setNameLabel();
     }
+
     private void userChangedPlayerName(String name, int index) {
         view.getPlayer(index).put("name", name);
         squad.getPlayerList().get(index).setName(name);

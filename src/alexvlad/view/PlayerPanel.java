@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.HashMap;
+
 public class PlayerPanel extends JPanel {
 
     private JButton playerButton;
@@ -12,6 +13,7 @@ public class PlayerPanel extends JPanel {
     private JPanel textfieldPanel;
     private JPanel buttonPanel;
     private Fantasy f;
+
     public PlayerPanel(HashMap<String, String> player, Fantasy f) {
         super();
 
@@ -19,6 +21,7 @@ public class PlayerPanel extends JPanel {
         this.f = f;
         createWidget();
     }
+
     public void createWidget() {
 
         setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -46,26 +49,30 @@ public class PlayerPanel extends JPanel {
             setImage();
         }
     }
+
     public JButton getPlayerButton() {
         return playerButton;
     }
+
     public JTextField getPlayerNameTextField() {
         return playerNameTextField;
     }
+
     public HashMap<String, String> getPlayer() {
         return player;
     }
+
     public void setImage() {
         try {
             ImageIcon ico = new ImageIcon(player.get("imagePath"));
             playerButton.setText("");
             playerButton.setIcon(ico);
             playerButton.setPreferredSize(new Dimension(ico.getIconWidth(), ico.getIconHeight()));
-            //  playerNameTextField.setPreferredSize(new Dimension(playerButton.getWidth(), 30));
             f.resize();
         } catch (Exception e) {
         }
     }
+
     public void setNameLabel() {
         playerNameTextField.setText(player.get("name"));
     }

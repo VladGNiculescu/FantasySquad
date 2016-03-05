@@ -1,17 +1,16 @@
 package alexvlad.view;
 
-import alexvlad.model.Player;
-
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class PlayerPanel extends JPanel {
 
     private JButton playerButton;
     private JLabel playerNameLabel;
-    private Player player;
+    private HashMap<String, String> player;
 
-    public PlayerPanel(Player player) {
+    public PlayerPanel(HashMap<String, String> player) {
         super();
 
         this.player = player;
@@ -25,7 +24,7 @@ public class PlayerPanel extends JPanel {
         playerButton = new JButton("+");
 
 
-        playerNameLabel = new JLabel(player.getName());
+        playerNameLabel = new JLabel(player.get("name"));
         playerNameLabel.setHorizontalAlignment(JLabel.CENTER);
         JPanel buttonPanel = new JPanel();
 
@@ -43,7 +42,7 @@ public class PlayerPanel extends JPanel {
         add(playerNameLabel, BorderLayout.SOUTH);
 
 
-        if (player.getImgPath() != null) {
+        if (player.get("imagePath") != null) {
             setImage();
         }
     }
@@ -52,14 +51,13 @@ public class PlayerPanel extends JPanel {
         return playerButton;
     }
 
-    public Player getPlayer() {
+    public HashMap<String, String> getPlayer() {
         return player;
     }
 
     public void setImage() {
         try {
-            System.out.println(player.getImgPath());
-            ImageIcon ico = new ImageIcon(player.getImgPath());
+            ImageIcon ico = new ImageIcon(player.get("imagePath"));
             playerButton.setText("");
             playerButton.setIcon(ico);
             playerButton.setPreferredSize(new Dimension(ico.getIconWidth(), ico.getIconHeight()));
@@ -69,7 +67,7 @@ public class PlayerPanel extends JPanel {
     }
 
     public void setNameLabel() {
-        playerNameLabel.setText(player.getName());
+        playerNameLabel.setText(player.get("name"));
     }
 
 }

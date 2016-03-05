@@ -47,7 +47,7 @@ public class Fantasy extends JFrame {
         return formationPanel.getPlayerButtonsMap().get(id).getButton();
     }
 
-    public Player getPlayer(int id) {
+    public HashMap<String, String> getPlayer(int id) {
         return formationPanel.getPlayerButtonsMap().get(id).getPlayer();
     }
 

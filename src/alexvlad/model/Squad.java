@@ -73,12 +73,12 @@ public class Squad {
         }
 
 
-        ArrayList<Player> goalkeepers = new ArrayList<Player>();
-        ArrayList<Player> defenders = new ArrayList<Player>();
-        ArrayList<Player> midfielders = new ArrayList<Player>();
-        ArrayList<Player> strikers = new ArrayList<Player>();
+        goalkeepers = new ArrayList<Player>();
+        defenders = new ArrayList<Player>();
+        midfielders = new ArrayList<Player>();
+        strikers = new ArrayList<Player>();
 
-        ArrayList<Player> subs = new ArrayList<Player>();
+        subs = new ArrayList<Player>();
 
         goalkeepers.add(players.get(0));
         subs.add(players.get(1));

@@ -22,15 +22,15 @@ public class FormationPanel extends JPanel {
         setMinimumSize(new Dimension(500, 500));
     }
 
-    public void remove(ArrayList<Player> players) {
+    public void remove(ArrayList<HashMap<String, String>> players) {
         remove(addLine(players));
     }
 
-    public void add(ArrayList<Player> players) {
+    public void add(ArrayList<HashMap<String, String>> players) {
         add(addLine(players));
     }
 
-    public JPanel addLine(ArrayList<Player> players) {
+    private JPanel addLine(ArrayList<HashMap<String, String>> players) {
 
         JPanel line = new JPanel();
         line.setLayout(new GridLayout(1, players.size(), 20, 20));

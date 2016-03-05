@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Controller {
 
@@ -57,13 +58,76 @@ public class Controller {
             view.setFormationPanel(new FormationPanel());
         }
 
-        view.getFormationPanel().add(squad.getGoalkeepers());
-        view.getFormationPanel().add(squad.getDefenders());
-        view.getFormationPanel().add(squad.getMidfielders());
-        view.getFormationPanel().add(squad.getStrikers());
-        view.getFormationPanel().add(squad.getSubs());
-
+        sendPlayersToPitch();
         view.updateFormationPanel();
+    }
+
+    private void sendPlayersToPitch() {
+        ArrayList<HashMap<String, String>> playersToSend = new ArrayList<HashMap<String, String>>();
+        for (int i = 0; i < squad.getGoalkeepers().size(); ++i) {
+            Player current = squad.getGoalkeepers().get(i);
+            HashMap<String, String> infoMap = new HashMap<String, String>();
+
+            infoMap.put("name", current.getName());
+            infoMap.put("imagePath", current.getImgPath());
+
+            playersToSend.add(infoMap);
+        }
+
+        view.getFormationPanel().add(playersToSend);
+        playersToSend.clear();
+
+        for (int i = 0; i < squad.getDefenders().size(); ++i) {
+            Player current = squad.getDefenders().get(i);
+            HashMap<String, String> infoMap = new HashMap<String, String>();
+
+            infoMap.put("name", current.getName());
+            infoMap.put("imagePath", current.getImgPath());
+
+            playersToSend.add(infoMap);
+        }
+
+        view.getFormationPanel().add(playersToSend);
+        playersToSend.clear();
+
+        for (int i = 0; i < squad.getMidfielders().size(); ++i) {
+            Player current = squad.getMidfielders().get(i);
+            HashMap<String, String> infoMap = new HashMap<String, String>();
+
+            infoMap.put("name", current.getName());
+            infoMap.put("imagePath", current.getImgPath());
+
+            playersToSend.add(infoMap);
+        }
+
+        view.getFormationPanel().add(playersToSend);
+        playersToSend.clear();
+
+        for (int i = 0; i < squad.getStrikers().size(); ++i) {
+            Player current = squad.getStrikers().get(i);
+            HashMap<String, String> infoMap = new HashMap<String, String>();
+
+            infoMap.put("name", current.getName());
+            infoMap.put("imagePath", current.getImgPath());
+
+            playersToSend.add(infoMap);
+        }
+
+        view.getFormationPanel().add(playersToSend);
+        playersToSend.clear();
+
+        for (int i = 0; i < squad.getSubs().size(); ++i) {
+            Player current = squad.getSubs().get(i);
+            HashMap<String, String> infoMap = new HashMap<String, String>();
+
+            infoMap.put("name", current.getName());
+            infoMap.put("imagePath", current.getImgPath());
+
+            playersToSend.add(infoMap);
+        }
+
+        view.getFormationPanel().add(playersToSend);
+        playersToSend.clear();
     }
 
     private int[] decodeFormationString(String formation) {
@@ -134,7 +198,7 @@ public class Controller {
 
     private void setImgToPlayer(String file, int index) {
 
-        view.getPlayer(index).setImgPath(file);
+        view.getPlayer(index).put("imagePath", file);
         view.getPanel(index).setImage();
     }
 
@@ -150,7 +214,7 @@ public class Controller {
 
         String capitalised = String.valueOf(finalString.charAt(0)).toUpperCase() + finalString.substring(1, finalString.length());
 
-        view.getPlayer(index).setName(capitalised);
+        view.getPlayer(index).put("name", capitalised);
         view.getPanel(index).setNameLabel();
     }
 

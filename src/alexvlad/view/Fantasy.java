@@ -3,6 +3,7 @@ package alexvlad.view;
 import alexvlad.controller.Controller;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.HashMap;
 public class Fantasy extends JFrame {
@@ -11,6 +12,7 @@ public class Fantasy extends JFrame {
     private JPanel borderPanel;
     private FormationPanel formationPanel;
     private Controller controller;
+    private JPanel  bottomPanel;
     public Fantasy() {
         super("Fantasy Football");
 
@@ -24,8 +26,15 @@ public class Fantasy extends JFrame {
         String[] formations = {"Select a formation...", "4-4-2", "4-3-3", "3-5-2", "5-3-2", "3-4-3", "4-5-1"};
         formationList = new JComboBox(formations);
         borderPanel = new JPanel();
+        bottomPanel = new JPanel();
         borderPanel.setLayout(new BorderLayout());
         borderPanel.add(formationList, BorderLayout.NORTH);
+        formationList.setBorder(new EmptyBorder(20,20,0,20));
+        borderPanel.add(bottomPanel,BorderLayout.SOUTH);
+
+        bottomPanel.setBorder(BorderFactory.createMatteBorder(1,0,0,0,Color.black));
+
+        bottomPanel.setPreferredSize(new Dimension(borderPanel.getWidth(),25));
         add(borderPanel);
 
 

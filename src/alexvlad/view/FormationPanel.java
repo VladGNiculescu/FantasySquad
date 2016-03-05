@@ -63,4 +63,20 @@ public class FormationPanel extends JPanel {
 
         return toReturn;
     }
+
+    public Integer getPlayerIDForTextField(JTextField textField) {
+
+        Integer toReturn = -1;
+
+        for (Integer key : buttonlistMap.keySet()) {
+            JTextField currentTextfield = buttonlistMap.get(key).getPlayerNameTextField();
+
+            if (currentTextfield == textField) {
+                toReturn = key;
+                break;
+            }
+        }
+
+        return toReturn;
+    }
 }

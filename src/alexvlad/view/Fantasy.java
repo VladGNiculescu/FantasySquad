@@ -1,17 +1,21 @@
 package alexvlad.view;
 
+import alexvlad.controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
 public class Fantasy extends JFrame {
 
-    JComboBox formationList;
-    JPanel borderPanel;
-    FormationPanel formationPanel;
+    private JComboBox formationList;
+    private JPanel borderPanel;
+    private FormationPanel formationPanel;
+    private Controller controller;
 
     public Fantasy() {
         super("Fantasy Squad");
+
         createWidgets();
     }
 
@@ -61,6 +65,10 @@ public class Fantasy extends JFrame {
         return formationPanel.getPlayerIDForButton(button);
     }
 
+    public Integer getPlayerIDForTextField(JTextField textField) {
+        return formationPanel.getPlayerIDForTextField(textField);
+    }
+
     public JComboBox getFormationList() {
         return formationList;
     }
@@ -75,5 +83,15 @@ public class Fantasy extends JFrame {
 
     public void setFormationPanel(FormationPanel formationPanel) {
         this.formationPanel = formationPanel;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+
+
     }
 }

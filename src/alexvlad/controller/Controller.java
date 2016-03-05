@@ -7,19 +7,16 @@ import alexvlad.view.FormationPanel;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
-public class Controller {
+public class Controller implements ActionListener {
 
     Fantasy view;
     Squad squad;
-
 
     public Controller(Fantasy view, Squad squad) {
         this.view = view;
@@ -28,6 +25,16 @@ public class Controller {
         this.view.setVisible(true);
 
         setupFormations();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().getClass() == JTextField.class) {
+            JTextField source = (JTextField) e.getSource();
+            String text = source.getText();
+            int index = view.getPlayerIDForTextField(source);
+            userChangedPlayerName(text, index);
+        }
     }
 
     private void setupFormations() {
@@ -39,7 +46,6 @@ public class Controller {
                 if (view.getFormationList().getSelectedIndex() > 0) {
                     formationChanged(selectedFormation);
                 }
-
 
                 addActionListenersToPlayers();
             }
@@ -167,18 +173,17 @@ public class Controller {
             currentTextField.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
-                    System.out.println("Insert update");
-
+                    actionPerformed(new ActionEvent(currentTextField, 1001, null));
                 }
 
                 @Override
                 public void removeUpdate(DocumentEvent e) {
-                    System.out.println("Remove update");
+                    actionPerformed(new ActionEvent(currentTextField, 1001, null));
                 }
 
                 @Override
                 public void changedUpdate(DocumentEvent e) {
-                    System.out.println("Changed update");
+                    actionPerformed(new ActionEvent(currentTextField, 1001, null));
                 }
             });
         }
@@ -242,6 +247,8 @@ public class Controller {
         view.getPanel(index).setNameLabel();
     }
 
-//    private void set
-
+    private void userChangedPlayerName(String name, int index) {
+        view.getPlayer(index).put("name", name);
+        squad.getPlayerList().get(index).setName(name);
+    }
 }
